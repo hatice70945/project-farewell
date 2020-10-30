@@ -195,12 +195,12 @@ var GameScene = new Phaser.Class({
 
         // Q6
         this.Q6 = this.add.image(960, 540+1080, 'Q6');
-        this.Q6_but_1 = this.add.image(648, 828, 'Q6-but-1').setAlpha(0).setScale(button_scale);
+        this.Q6_but_1 = this.add.image(600, 828, 'Q6-but-1').setAlpha(0).setScale(button_scale);
         this.Q6_but_2 = this.add.image(960, 828, 'Q6-but-2').setAlpha(0).setScale(button_scale);
-        this.Q6_but_3 = this.add.image(1272, 828, 'Q6-but-3').setAlpha(0).setScale(button_scale);
-        this.Q6_but_black_1 = this.add.image(648, 828, 'Q6-but-black-1').setVisible(false).setScale(button_scale);
+        this.Q6_but_3 = this.add.image(1272+48, 828, 'Q6-but-3').setAlpha(0).setScale(button_scale);
+        this.Q6_but_black_1 = this.add.image(600, 828, 'Q6-but-black-1').setVisible(false).setScale(button_scale);
         this.Q6_but_black_2 = this.add.image(960, 828, 'Q6-but-black-2').setVisible(false).setScale(button_scale);
-        this.Q6_but_black_3 = this.add.image(1272, 828, 'Q6-but-black-3').setVisible(false).setScale(button_scale);
+        this.Q6_but_black_3 = this.add.image(1272+48, 828, 'Q6-but-black-3').setVisible(false).setScale(button_scale);
 
         // Q6 trans
         this.Q6_Q7 = this.add.image(960, 540+1080, 'Q6-Q7');
@@ -829,7 +829,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q1_but_1, this.Q1_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
         })
 
@@ -852,7 +852,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q1_5_but_1, this.Q1_5_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
         })
 
@@ -945,7 +945,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q2_but_1, this.Q2_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
         })
 
@@ -1007,7 +1007,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q3_but_1, this.Q3_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
         })
 
@@ -1116,7 +1116,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q4_but_1, this.Q4_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
         })
 
@@ -1178,7 +1178,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q5_but_1, this.Q5_but_2],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
             offset: '+=2000'
         })
@@ -1248,7 +1248,7 @@ var GameScene = new Phaser.Class({
             targets: [this.Q6_but_1, this.Q6_but_2, this.Q6_but_3],
             alpha: 1,
             ease: 'Linear',
-            duration: 1000,
+            duration: 500,
             completeDelay: 0,
             offset: '+=2000'
         })
