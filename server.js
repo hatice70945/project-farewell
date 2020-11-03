@@ -4,19 +4,39 @@ const bodyParser = require('body-parser');
 const mysql = require("mysql");
 const dbConfig = require("./db.config.js");
 
-// Create a connection to the database
-const sql = mysql.createConnection({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB
-});
+var sql;
 
-// open the MySQL connection
-sql.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database.");
-});
+// Create a connection to the database
+function connect(){
+
+  sql = mysql.createConnection({
+    host: dbConfig.HOST,
+	user: dbConfig.USER,
+	password: dbConfig.PASSWORD,
+	database: dbConfig.DB
+  });
+
+  // open the MySQL connection
+  sql.connect(error => {
+  	if (error) {
+      throw error;
+      setTimeout(connect, 2000);
+    }
+  	console.log("Successfully connected to the database.");
+  });
+
+  sql.on('error', err =>{
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+      connect();
+    }
+    else{
+      throw err;
+    }
+  })
+}
+
+connect();
 
 const app = express();
 

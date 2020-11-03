@@ -707,6 +707,8 @@ var GameScene = new Phaser.Class({
         // Leaving page
         this.hover(this.restart, this.restart_black);
         this.Q7.on('pointerup', ()=>{
+            this.stop.setVisible(false).disableInteractive();
+            this.stop_black.setVisible(false).disableInteractive();
             this.finishTimeline.play();
             this.finishTimeline.on('complete', ()=>{
                 this.restart.setInteractive();
@@ -714,7 +716,7 @@ var GameScene = new Phaser.Class({
                     clearTimeout(this.restartTimer);
                     this.scene.restart();
                 })
-                this.whiteStop();
+                // this.whiteStop();
             })
             this.restartTimer = setTimeout(() => {
                 this.tweens.add({
@@ -725,7 +727,7 @@ var GameScene = new Phaser.Class({
                     completeDelay: 0
                 });
                 // this.scene.restart();
-            }, 30000);
+            }, 5000);
         })
     },
 
