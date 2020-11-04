@@ -226,10 +226,10 @@ var GameScene = new Phaser.Class({
         this.restart_black = this.add.image(960, 940, 'restart-black').setVisible(false).setScale(button_scale);
         this.stop = this.add.image(1820, 980, 'stop').setAlpha(0).setScale(0.48).setVisible(false);
         this.stop_black = this.add.image(1820, 980, 'stop-black').setVisible(0).setAlpha(0).setScale(0.48);
+        this.confirm = this.add.image(960, 540, 'confirm').setAlpha(0).setScale(0.8);
         this.yes_black = this.add.image(960, 540+20, 'yes-black').setVisible(0).setScale(0.8);
         this.yes = this.add.image(960, 540+20, 'yes').setVisible(0).setScale(0.8);
-        this.confirm = this.add.image(960, 540, 'confirm').setAlpha(0).setScale(0.8);
-        this.close = this.add.image(960+275, 540-100, 'close').setAlpha(0).setScale(0.48);
+        this.close = this.add.image(960+250, 540-120, 'close').setAlpha(0).setScale(0.48);
         this.finish = this.add.image(960, 540, 'finish').setAlpha(0).setScale(0.48);
 
         // Timelines
