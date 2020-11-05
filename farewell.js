@@ -105,6 +105,13 @@ var GameScene = new Phaser.Class({
         this.load.image('Q7-5', 'assets/Q7-5.png');
         this.load.image('Q7-6', 'assets/Q7-6.png');
         this.load.image('Q7-7', 'assets/Q7-7.png');
+
+        this.load.image('dress', 'assets/dress.png');
+        this.load.image('stamp', 'assets/stamp.png');
+        this.load.image('photo', 'assets/photo.png');
+        this.load.image('bracelet', 'assets/bracelet.png');
+        this.load.image('award', 'assets/award.png');
+        this.load.image('card', 'assets/card.png');
     },
 
     create: function(){
@@ -215,6 +222,13 @@ var GameScene = new Phaser.Class({
         this.Q7_5 = this.add.image(960, 50, 'Q7-5').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
         this.Q7_6 = this.add.image(960, 50, 'Q7-6').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
         this.Q7_7 = this.add.image(960, 50, 'Q7-7').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
+
+        this.dress = this.add.image(960, 810, 'dress').setAlpha(0);
+        this.stamp = this.add.image(960, 810, 'stamp').setAlpha(0);
+        this.photo = this.add.image(960, 810, 'photo').setAlpha(0);
+        this.bracelet = this.add.image(960, 810, 'bracelet').setAlpha(0);
+        this.award = this.add.image(960, 810, 'award').setAlpha(0);
+        this.card = this.add.image(960, 810, 'card').setAlpha(0);
 
         // Finish
         // this.finish = this.add.image(960, 540+1080, 'finish');
@@ -333,7 +347,7 @@ var GameScene = new Phaser.Class({
                 }
               })
               .then(function (response) {
-                console.log(response);
+                return;
               })
             this.yes.disableInteractive();
             this.confirm.setAlpha(0);
@@ -591,7 +605,7 @@ var GameScene = new Phaser.Class({
                 }
               })
               .then(function (response) {
-                console.log(response);
+                return;
               })
             this.Q6_Q7.setInteractive();
         })
@@ -623,11 +637,8 @@ var GameScene = new Phaser.Class({
                 this.Q7.setInteractive();
             }, 2000)
 
-            console.log(this.points)
-            console.log(p);
-
             switch (true) {
-                case (p == 5):
+                case (p == 5): // dress
                     this.tweens.add({
                         targets: this.Q7_1,
                         alpha: 1, 
@@ -636,8 +647,15 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_1;
+                    this.tweens.add({
+                        targets: this.dress,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
-                case (p == 4):
+                case (p == 4): // stamp
                     this.tweens.add({
                         targets: this.Q7_2,
                         alpha: 1, 
@@ -646,8 +664,15 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_2;
+                    this.tweens.add({
+                        targets: this.stamp,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
-                case (p == 3):
+                case (p == 3): // photo
                     this.tweens.add({
                         targets: this.Q7_3,
                         alpha: 1, 
@@ -656,9 +681,16 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_3;
+                    this.tweens.add({
+                        targets: this.photo,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
             
-                case (p == 1 || p == 2):
+                case (p == 1 || p == 2): // bracelet
                     this.tweens.add({
                         targets: this.Q7_4,
                         alpha: 1, 
@@ -667,8 +699,15 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_4;
+                    this.tweens.add({
+                        targets: this.bracelet,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
-                case (p == 0):
+                case (p == 0): // award
                     this.tweens.add({
                         targets: this.Q7_5,
                         alpha: 1, 
@@ -677,8 +716,15 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_5;
+                    this.tweens.add({
+                        targets: this.award,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
-                case (p == -1 || p == -2):
+                case (p == -1 || p == -2): //card
                     this.tweens.add({
                         targets: this.Q7_6,
                         alpha: 1, 
@@ -687,6 +733,13 @@ var GameScene = new Phaser.Class({
                         delay: 2000
                     })
                     this.Q7_text = this.Q7_6;
+                    this.tweens.add({
+                        targets: this.card,
+                        alpha: 1,
+                        ease: 'Linear',
+                        duration: 1000,
+                        delay: 2000
+                    })
                     break;
                 case (p == -3):
                     this.tweens.add({
@@ -1331,7 +1384,6 @@ var GameScene = new Phaser.Class({
         this.stop_black.disableInteractive();
         this.stop.setAlpha(0);
         this.stop.setVisible(true);
-        console.log('whitestop');
         this.tweens.add({
             targets: this.stop,
             alpha: 1, 
