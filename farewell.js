@@ -224,12 +224,12 @@ var GameScene = new Phaser.Class({
         this.Q7_6 = this.add.image(960, 50, 'Q7-6').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
         this.Q7_7 = this.add.image(960, 50, 'Q7-7').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
 
-        this.dress = this.add.image(960, 810, 'dress').setAlpha(0);
-        this.stamp = this.add.image(960, 810, 'stamp').setAlpha(0);
-        this.photo = this.add.image(960, 810, 'photo').setAlpha(0);
-        this.bracelet = this.add.image(960, 810, 'bracelet').setAlpha(0);
-        this.award = this.add.image(960, 810, 'award').setAlpha(0);
-        this.card = this.add.image(960, 810, 'card').setAlpha(0);
+        this.dress = this.add.image(960, 800, 'dress').setAlpha(0).setScale(1.5);
+        this.stamp = this.add.image(960, 800, 'stamp').setAlpha(0).setScale(1.5);
+        this.photo = this.add.image(960, 800, 'photo').setAlpha(0).setScale(1.5);
+        this.bracelet = this.add.image(960, 800, 'bracelet').setAlpha(0).setScale(1.5);
+        this.award = this.add.image(960, 800, 'award').setAlpha(0).setScale(1.5);
+        this.card = this.add.image(960, 800, 'card').setAlpha(0).setScale(1.5);
 
         // Finish
         // this.finish = this.add.image(960, 540+1080, 'finish');
@@ -243,9 +243,9 @@ var GameScene = new Phaser.Class({
         this.stop = this.add.image(1820, 980, 'stop').setAlpha(0).setScale(0.48).setVisible(false);
         this.stop_black = this.add.image(1820, 980, 'stop-black').setVisible(0).setAlpha(0).setScale(0.48);
         this.confirm = this.add.image(960, 540, 'confirm').setAlpha(0).setScale(0.8);
-        this.yes_black = this.add.image(960, 540+20, 'yes-black').setVisible(0).setScale(0.8);
-        this.yes = this.add.image(960, 540+20, 'yes').setVisible(0).setScale(0.8);
-        this.close = this.add.image(960+250, 540-120, 'close').setAlpha(0).setScale(0.48);
+        this.yes_black = this.add.image(960, 540+30, 'yes-black').setVisible(0).setScale(0.8);
+        this.yes = this.add.image(960, 540+30, 'yes').setVisible(0).setScale(0.8);
+        this.close = this.add.image(960+250, 540-100, 'close').setAlpha(0).setScale(0.48);
         this.finish = this.add.image(960, 540, 'finish').setAlpha(0).setScale(0.48);
 
         // Timelines
