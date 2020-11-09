@@ -226,7 +226,7 @@ var GameScene = new Phaser.Class({
 
         this.dress = this.add.image(960, 800, 'dress').setAlpha(0).setScale(1.5);
         this.stamp = this.add.image(960, 800, 'stamp').setAlpha(0).setScale(1.5);
-        this.photo = this.add.image(960, 800, 'photo').setAlpha(0).setScale(1.5);
+        tTHSIhis.photo = this.add.image(960, 800, 'photo').setAlpha(0).setScale(1.5);
         this.bracelet = this.add.image(960, 800, 'bracelet').setAlpha(0).setScale(1.5);
         this.award = this.add.image(960, 800, 'award').setAlpha(0).setScale(1.5);
         this.card = this.add.image(960, 800, 'card').setAlpha(0).setScale(1.5);
@@ -570,7 +570,7 @@ var GameScene = new Phaser.Class({
         this.hover(this.Q6_but_2, this.Q6_but_black_2);
         this.hover(this.Q6_but_3, this.Q6_but_black_3);
         this.Q6_but_1.on('pointerup', ()=>{
-            this.points[6] = 0;
+            this.points[6] = -1;
             this.Q6_but_1.setAlpha(0);
             this.Q6_but_2.setAlpha(0);
             this.Q6_but_3.setAlpha(0);
@@ -580,7 +580,7 @@ var GameScene = new Phaser.Class({
             this.Q6TransTimeline.play();
         })
         this.Q6_but_2.on('pointerup', ()=>{
-            this.points[6] = 1;
+            this.points[6] = 0;
             this.Q6_but_1.setAlpha(0);
             this.Q6_but_2.setAlpha(0);
             this.Q6_but_3.setAlpha(0);
@@ -590,7 +590,7 @@ var GameScene = new Phaser.Class({
             this.Q6TransTimeline.play();
         })
         this.Q6_but_3.on('pointerup', ()=>{
-            this.points[6] = -1;
+            this.points[6] = 1;
             this.Q6_but_1.setAlpha(0);
             this.Q6_but_2.setAlpha(0);
             this.Q6_but_3.setAlpha(0);
