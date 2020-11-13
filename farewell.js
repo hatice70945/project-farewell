@@ -774,29 +774,38 @@ var GameScene = new Phaser.Class({
                 this.finishTimeline.play();
             }
             this.finishTimeline.on('complete', ()=>{
+                this.restartTimer = setTimeout(() => {
+                    this.tweens.add({
+                        targets: this.restart,
+                        alpha: 1,
+                        ease: 'Power1',
+                        duration: 2000,
+                        completeDelay: 0
+                    });
+                }, 5000);
                 this.restart.setInteractive();
                 this.restart.on('pointerup', ()=>{
-                    clearTimeout(this.restartTimer);
+                    this.restart.disableInteractive();
                     this.scene.restart();
                 })
             })
             this.finishTimeline_1.on('complete', ()=>{
+                this.restartTimer = setTimeout(() => {
+                    this.tweens.add({
+                        targets: this.restart,
+                        alpha: 1,
+                        ease: 'Power1',
+                        duration: 2000,
+                        completeDelay: 0
+                    });
+                }, 5000);
                 this.restart.setInteractive();
                 this.restart.on('pointerup', ()=>{
-                    clearTimeout(this.restartTimer);
+                    this.restart.disableInteractive();
                     this.scene.restart();
                 })
             })
             this.Q7.disableInteractive();
-            this.restartTimer = setTimeout(() => {
-                this.tweens.add({
-                    targets: this.restart,
-                    alpha: 1,
-                    ease: 'Power1',
-                    duration: 2000,
-                    completeDelay: 0
-                });
-            }, 5000);
         })
     },
 
