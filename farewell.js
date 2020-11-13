@@ -762,6 +762,7 @@ var GameScene = new Phaser.Class({
         })
         
         // Leaving page
+        this.ready_to_leave = false;
         this.hover(this.restart, this.restart_black);
         this.Q7.on('pointerup', ()=>{
             this.stop.setVisible(false).disableInteractive();
@@ -779,6 +780,14 @@ var GameScene = new Phaser.Class({
                     this.scene.restart();
                 })
             })
+            this.finishTimeline_1.on('complete', ()=>{
+                this.restart.setInteractive();
+                this.restart.on('pointerup', ()=>{
+                    clearTimeout(this.restartTimer);
+                    this.scene.restart();
+                })
+            })
+            this.Q7.disableInteractive();
             this.restartTimer = setTimeout(() => {
                 this.tweens.add({
                     targets: this.restart,
