@@ -43,6 +43,8 @@ var GameScene = new Phaser.Class({
 
         // Q1.5
         this.load.image('Q1.5', 'assets/Q1.5.jpg');
+        this.load.image('Q1.5-1', 'assets/Q1.5-1.png');
+        this.load.image('Q1.5-2', 'assets/Q1.5-2.png');
         this.load.image('Q1.5-but-1', 'assets/but-Q1.5-1.png');
         this.load.image('Q1.5-but-2', 'assets/but-Q1.5-2.png');
         this.load.image('Q1.5-but-black-1', 'assets/but-black-Q1.5-1.png');
@@ -143,6 +145,8 @@ var GameScene = new Phaser.Class({
 
         // Q1.5
         this.Q1_5 = this.add.image(960, 540, 'Q1.5').setAlpha(0);
+        this.Q1_5_1 = this.add.image(960-162, 540-165, 'Q1.5-1').setAlpha(0).setOrigin(0, 0);
+        this.Q1_5_2 = this.add.image(960-162, 540-105, 'Q1.5-2').setAlpha(0).setOrigin(0, 0);
         this.Q1_5_but_1 = this.add.image(804, 640, 'Q1.5-but-1').setAlpha(0).setScale(button_scale);
         this.Q1_5_but_2 = this.add.image(1124, 640, 'Q1.5-but-2').setAlpha(0).setScale(button_scale);
         this.Q1_5_but_black_1 = this.add.image(804, 640, 'Q1.5-but-black-1').setVisible(false).setScale(button_scale);
@@ -408,6 +412,8 @@ var GameScene = new Phaser.Class({
         // Q1.5 arbitary button clicked, to Q1 trans page
         this.Q1_5_but_1.on('pointerup', ()=>{
             this.points[1] = 0;
+            this.Q1_5_1.setAlpha(0);
+            this.Q1_5_2.setAlpha(0);
             this.Q1_5_but_1.setAlpha(0);
             this.Q1_5_but_2.setAlpha(0);
             this.Q1_5_but_black_1.setVisible(false);
@@ -416,6 +422,8 @@ var GameScene = new Phaser.Class({
         })
         this.Q1_5_but_2.on('pointerup', ()=>{
             this.points[1] = -1;
+            this.Q1_5_1.setAlpha(0);
+            this.Q1_5_2.setAlpha(0);
             this.Q1_5_but_1.setAlpha(0);
             this.Q1_5_but_2.setAlpha(0);
             this.Q1_5_but_black_1.setVisible(false);
@@ -487,6 +495,7 @@ var GameScene = new Phaser.Class({
             })
         })
         this.Q3_but_2.on('pointerup', ()=>{
+            this.audioScene.play(1);
             this.points[3] = 1;
             this.Q3_but_1.setAlpha(0);
             this.Q3_but_2.setAlpha(0);
@@ -552,6 +561,7 @@ var GameScene = new Phaser.Class({
             this.Q5TransTimeline.play();
         })
         this.Q5_but_2.on('pointerup', ()=>{
+            this.audioScene.play(2);
             this.points[5] = 0;
             this.Q5_but_1.setAlpha(0);
             this.Q5_but_2.setAlpha(0);
@@ -934,7 +944,22 @@ var GameScene = new Phaser.Class({
             ease: 'Power1',
             duration: 2000,
             completeDelay: 0,
-            offset: '-=1000'
+        });
+
+        timeline.add({
+            targets: this.Q1_5_1,
+            alpha: 1, 
+            ease: 'Power1',
+            duration: 1000,
+            completeDelay: 0,
+        });
+
+        timeline.add({
+            targets: this.Q1_5_2,
+            alpha: 1, 
+            ease: 'Power1',
+            duration: 1000,
+            completeDelay: 0,
         });
 
         timeline.add({
@@ -1120,6 +1145,22 @@ var GameScene = new Phaser.Class({
             duration: 2000,
             completeDelay: 0,
             offset: '-=2000'
+        });
+
+        timeline.add({
+            targets: this.ch2,
+            alpha: 1,
+            ease: 'Power1',
+            duration: 1000,
+            completeDelay: 1500,
+        });
+
+        timeline.add({
+            targets: this.ch2,
+            alpha: 0,
+            ease: 'Power1',
+            duration: 500,
+            completeDelay: 500,
         });
 
         timeline.add({
