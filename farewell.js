@@ -1,8 +1,6 @@
 const screenWidth = 1920;
 const screenHeight = 1080;
 
-// const axios = require('axios');
-
 var GameScene = new Phaser.Class({
     Extends: Phaser.Scene,
 
@@ -116,6 +114,8 @@ var GameScene = new Phaser.Class({
     },
 
     create: function(){
+
+        this.audioScene = this.scene.get('audioScene');
 
         this.points = [null, null, null, null, null, null, null];
 
@@ -276,12 +276,18 @@ var GameScene = new Phaser.Class({
         fullScreenButton.on('pointerup', () => {
             this.scale.startFullscreen();
             fullScreenButton.setVisible(false);
+            if(this.audioScene.playing() != 0){
+                this.audioScene.play(0);
+            }
         })
 
         // Start game button
         startButton.setInteractive();
         this.hover(startButton, blackStartButton);
         startButton.on('pointerup', ()=>{
+            if(this.audioScene.playing() != 0){
+                this.audioScene.play(0);
+            }
             startButton.setVisible(false);
             blackStartButton.setVisible(false);
             this.instructionTimeline.play();
@@ -358,6 +364,9 @@ var GameScene = new Phaser.Class({
             this.yes_black.setVisible(false);
             this.finish.setAlpha(1);       
             setTimeout(() => {
+                if(this.audioScene.playing() != 0){
+                    this.audioScene.play(0);
+                }
                 this.scene.restart();
             }, 5000);
         })
@@ -466,6 +475,7 @@ var GameScene = new Phaser.Class({
         this.hover(this.Q3_but_1, this.Q3_but_black_1);
         this.hover(this.Q3_but_2, this.Q3_but_black_2);
         this.Q3_but_1.on('pointerup', ()=>{
+            this.audioScene.play(1);
             this.points[3] = 0;
             this.Q3_but_1.setAlpha(0);
             this.Q3_but_2.setAlpha(0);
@@ -533,6 +543,7 @@ var GameScene = new Phaser.Class({
         this.hover(this.Q5_but_1, this.Q5_but_black_1);
         this.hover(this.Q5_but_2, this.Q5_but_black_2);
         this.Q5_but_1.on('pointerup', ()=>{
+            this.audioScene.play(2);
             this.points[5] = 1;
             this.Q5_but_1.setAlpha(0);
             this.Q5_but_2.setAlpha(0);
@@ -786,6 +797,7 @@ var GameScene = new Phaser.Class({
                 this.restart.setInteractive();
                 this.restart.on('pointerup', ()=>{
                     this.restart.disableInteractive();
+                    this.audioScene.play(0);
                     this.scene.restart();
                 })
             })
@@ -802,6 +814,7 @@ var GameScene = new Phaser.Class({
                 this.restart.setInteractive();
                 this.restart.on('pointerup', ()=>{
                     this.restart.disableInteractive();
+                    this.audioScene.play(0);
                     this.scene.restart();
                 })
             })
@@ -1460,6 +1473,54 @@ var GameScene = new Phaser.Class({
     }
 });
 
+var AudioScene = new Phaser.Class({
+    Extends: Phaser.Scene,
+
+    initialize:
+
+    function AudioScene(){
+        Phaser.Scene.call(this, {key: 'audioScene', active: true});
+    },
+
+    preload: function(){
+        this.load.audio('ch1-audio', 'assets/audio/ch1.mp3');
+        this.load.audio('ch2-audio', 'assets/audio/ch2.mp3');
+        this.load.audio('ch3-audio', 'assets/audio/ch3.mp3');
+    },
+
+    create: function(){
+        this.audios = [];
+        this.audios.push(this.sound.add('ch1-audio'));
+        this.audios.push(this.sound.add('ch2-audio'));
+        this.audios.push(this.sound.add('ch3-audio'));
+
+    },
+
+    update: function(){
+    },
+
+    stopAll: function(){
+        this.audios.forEach(e => {
+            e.stop();
+        })
+    },
+
+    play: function(index){
+        this.stopAll();
+        this.audios[index].play();
+        this.audios[index].setLoop(true);
+    },
+
+    playing: function(){
+        var i = 0;
+        for(i = 0; i < this.audios.length; i = i+1){
+            if(this.audios[i].isPlaying)
+                break;
+        }
+        return i;
+    }
+});
+
 var config = {
   type: Phaser.AUTO,
   scale: {
@@ -1469,7 +1530,7 @@ var config = {
       width: screenWidth,
       height: screenHeight
   },
-  scene: GameScene
+  scene: [GameScene, AudioScene]
 }
 
 var game = new Phaser.Game(config)
