@@ -31,7 +31,7 @@ function connect(){
       connect();
     }
     else{
-      throw err;
+      return 0;
     }
   })
 }
@@ -57,7 +57,7 @@ app.post('/points', (req, res) =>{
   return res.send('ok');
 })
 
-const port = 8181
+const port = 7777
 app.listen(port, () => {
   console.log('Server listening on http://localhost:'+port);
 });

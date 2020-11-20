@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: http-ingress
+spec:
+  tls:
+   - hosts:
+      - solar.cs.nthu.edu.tw
+     secretName: lets-encrypt
+  rules:
+  - host: solar.cs.nthu.edu.tw
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: farewell
+          servicePort: 7777
