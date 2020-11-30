@@ -125,6 +125,8 @@ var GameScene = new Phaser.Class({
 
         const button_scale = 0.8;
 
+        this.timeout = null // Reset timer for mouse click.
+
         // Home page
         this.home = this.add.image(screenWidth/2, screenHeight/2, 'home').setDisplaySize(screenWidth, screenHeight);
         fullScreenButton = this.add.image(1820, 100, 'fullscreen-button');
@@ -289,6 +291,18 @@ var GameScene = new Phaser.Class({
         startButton.setInteractive();
         this.hover(startButton, blackStartButton);
         startButton.on('pointerup', ()=>{
+            document.addEventListener('click', (e)=>{
+                clearTimeout(this.timeout);
+                console.log('Timeout reset!');
+                this.timeout = setTimeout(() => {
+                    console.log('Time up! Restart!');
+                    if(this.audioScene.playing() != 0){
+                        this.audioScene.play(0);
+                    }
+                    this.scene.restart();
+                }, 6000);
+            });
+
             if(this.audioScene.playing() != 0){
                 this.audioScene.play(0);
             }
@@ -371,6 +385,7 @@ var GameScene = new Phaser.Class({
                 if(this.audioScene.playing() != 0){
                     this.audioScene.play(0);
                 }
+                clearTimeout(this.timeout);
                 this.scene.restart();
             }, 5000);
         })
@@ -808,6 +823,7 @@ var GameScene = new Phaser.Class({
                 this.restart.on('pointerup', ()=>{
                     this.restart.disableInteractive();
                     this.audioScene.play(0);
+                    clearTimeout(this.timeout);
                     this.scene.restart();
                 })
             })
@@ -825,6 +841,7 @@ var GameScene = new Phaser.Class({
                 this.restart.on('pointerup', ()=>{
                     this.restart.disableInteractive();
                     this.audioScene.play(0);
+                    clearTimeout(this.timeout);
                     this.scene.restart();
                 })
             })
