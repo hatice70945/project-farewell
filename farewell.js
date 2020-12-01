@@ -113,6 +113,9 @@ var GameScene = new Phaser.Class({
         this.load.image('bracelet', 'assets/bracelet.png');
         this.load.image('award', 'assets/award.png');
         this.load.image('card', 'assets/card.png');
+
+        this.load.image('q8-white', 'assets/but-whiteQ8.png');
+        this.load.image('q8-black', 'assets/but-blackQ8.png');
     },
 
     create: function(){
@@ -230,12 +233,15 @@ var GameScene = new Phaser.Class({
         this.Q7_6 = this.add.image(960, 50, 'Q7-6').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
         this.Q7_7 = this.add.image(960, 50, 'Q7-7').setAlpha(0).setOrigin(0.5, 0).setScale(0.48);
 
-        this.dress = this.add.image(960, 800, 'dress').setAlpha(0).setScale(1.5);
-        this.stamp = this.add.image(960, 800, 'stamp').setAlpha(0).setScale(1.5);
-        this.photo = this.add.image(960, 800, 'photo').setAlpha(0).setScale(1.5);
-        this.bracelet = this.add.image(960, 800, 'bracelet').setAlpha(0).setScale(1.5);
-        this.award = this.add.image(960, 800, 'award').setAlpha(0).setScale(1.5);
-        this.card = this.add.image(960, 800, 'card').setAlpha(0).setScale(1.5);
+        this.dress = this.add.image(960, 750, 'dress').setAlpha(0).setScale(1.5);
+        this.stamp = this.add.image(960, 750, 'stamp').setAlpha(0).setScale(1.5);
+        this.photo = this.add.image(960, 750, 'photo').setAlpha(0).setScale(1.5);
+        this.bracelet = this.add.image(960, 750, 'bracelet').setAlpha(0).setScale(1.5);
+        this.award = this.add.image(960, 750, 'award').setAlpha(0).setScale(1.5);
+        this.card = this.add.image(960, 750, 'card').setAlpha(0).setScale(1.5);
+
+        this.q8_but = this.add.image(940, 950, 'q8-white').setAlpha(0).setScale(0.8);
+        this.q8_but_black = this.add.image(940, 950, 'q8-black').setVisible(false).setScale(0.8);
 
         // Finish
         // this.finish = this.add.image(960, 540+1080, 'finish');
@@ -300,7 +306,7 @@ var GameScene = new Phaser.Class({
                         this.audioScene.play(0);
                     }
                     this.scene.restart();
-                }, 6000);
+                }, 60000);
             });
 
             if(this.audioScene.playing() != 0){
@@ -795,12 +801,26 @@ var GameScene = new Phaser.Class({
                 default:
                     break;
             }
+
+            this.tweens.add({
+                targets: this.q8_but,
+                alpha: 1, 
+                ease: 'Power1',
+                duration: 2000,
+                completeDelay: 0,
+                delay: 2000
+            })
+
+            this.hover(this.q8_but, this.q8_but_black);
+            this.q8_but.setInteractive();
         })
         
         // Leaving page
         this.ready_to_leave = false;
         this.hover(this.restart, this.restart_black);
-        this.Q7.on('pointerup', ()=>{
+        this.q8_but.on('pointerup', ()=>{
+            this.q8_but.disableInteractive();
+            this.q8_but_black.setVisible(false);
             this.stop.setVisible(false).disableInteractive();
             this.stop_black.setVisible(false).disableInteractive();
             if(this.p <= -3){
